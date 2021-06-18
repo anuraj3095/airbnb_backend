@@ -2,6 +2,9 @@
 db = db.getSiblingDB("airbnb_db");
 db.airbnb_hostings.drop();
 
+
+
+/* 
 db.airbnb_hostings.insertMany([
     {
         "id": 1,
@@ -19,3 +22,4 @@ db.airbnb_hostings.insertMany([
         "type": "row house"
     },
 ]);
+*/
