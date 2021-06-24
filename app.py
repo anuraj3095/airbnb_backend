@@ -54,7 +54,7 @@ def get_hostings():
             hl.append(h)
         print(hl)
         return jsonify({"hostings": hl})
-    except:
+    except: 
         pass
     finally:
         if type(db)==MongoClient:
