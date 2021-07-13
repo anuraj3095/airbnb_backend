@@ -2,8 +2,10 @@ from flask import Flask, jsonify
 import pymongo
 from pymongo import MongoClient
 import csv
+# from flask_cors import CORS
 
 app = Flask(__name__)
+# cors=CORS(app)
 
 def get_db():
     client = MongoClient(host='airbnb_mongodb',
@@ -16,7 +18,9 @@ def get_db():
 
 @app.route('/')
 def ping_server():
-    return "Server is working."
+    response = jsonify("Server is working.")
+    response.headers.add("Access-Control-Allow-Origin","*")
+    return response
 
 @app.route('/count')
 def count():
@@ -53,7 +57,9 @@ def get_hostings():
             print(h)
             hl.append(h)
         print(hl)
-        return jsonify({"hostings": hl})
+        response = jsonify({"hostings": hl})
+        response.headers.add("Access-Control-Allow-Origin","*")
+        return response
     except: 
         pass
     finally:
