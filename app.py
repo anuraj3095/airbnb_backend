@@ -62,7 +62,7 @@ def homes():
         if locKey not in args:
             return "Error in parameters"
 
-        loc = args[locKey].to
+        loc = args[locKey]
         hostings = col.find({"neighbourhood":{"$eq":loc, "$exists":"true"}})
         hl = []
         for h in hostings:
@@ -102,7 +102,7 @@ def get_hostings():
     return  "Error retrieving hostings"
 
 def load_into_collection(col):
-    with open('listings_10.csv', 'r') as file:
+    with open('listings_200.csv', 'r') as file:
         reader = csv.DictReader(file)
         for row in reader:
             rowDict = dict(row)
