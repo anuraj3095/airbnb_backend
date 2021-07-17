@@ -253,6 +253,7 @@ def load_into_collection(col):
                 'calculated_host_listings_count_shared_rooms' :calculated_host_listings_count_shared_rooms,\
                 'reviews_per_month' :reviews_per_month
             })
+    resp = col.create_index("neighbourhood")
 
 @app.route('/load')
 def load_database():
