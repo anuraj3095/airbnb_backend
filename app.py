@@ -63,6 +63,7 @@ def homes():
             return "Error in parameters"
 
         loc = args[locKey]
+        loc=loc.lower()
         hostings = col.find({"neighbourhood":{"$eq":loc, "$exists":"true"}})
         hl = []
         for h in hostings:
@@ -132,7 +133,7 @@ def load_into_collection(col):
             host_verifications = rowDict['host_verifications']
             host_has_profile_pic = rowDict['host_has_profile_pic']
             host_identity_verified = rowDict['host_identity_verified']
-            neighbourhood = rowDict['neighbourhood']
+            neighbourhood = rowDict['neighbourhood'].lower()
             latitude = rowDict['latitude']
             longitude = rowDict['longitude']
             property_type = rowDict['property_type']
