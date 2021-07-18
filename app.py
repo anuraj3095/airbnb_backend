@@ -102,6 +102,19 @@ def get_hostings():
             db.close()
     return  "Error retrieving hostings"
 
+def proccesAmenitiesString(amenStr):
+    amenList = []
+    listDirty = amenStr.split(",")
+    for amen in listDirty:
+        cleanAmen = amen.replace("\\", "")
+        cleanAmen = cleanAmen.replace("[", "")
+        cleanAmen = cleanAmen.replace("]", "")
+        cleanAmen = cleanAmen.replace('"', "")
+        cleanAmen = cleanAmen.strip()
+        amenList.append(cleanAmen)
+    return amenList
+
+
 def load_into_collection(col):
     with open('listings_200.csv', 'r') as file:
         reader = csv.DictReader(file)
@@ -180,6 +193,8 @@ def load_into_collection(col):
             calculated_host_listings_count_shared_rooms = rowDict['calculated_host_listings_count_shared_rooms']
             reviews_per_month = rowDict['reviews_per_month']
 
+            amenList = proccesAmenitiesString(amenities)
+
             col.insert({'id' :id,\
                 'listing_url' :listing_url,\
                 'scrape_id' :scrape_id,\
@@ -216,7 +231,7 @@ def load_into_collection(col):
                 'bathrooms_text' :bathrooms_text,\
                 'bedrooms' :bedrooms,\
                 'beds' :beds,\
-                'amenities' :amenities,\
+                'amenities' :amenList,\
                 'price' :price,\
                 'minimum_nights' :minimum_nights,\
                 'maximum_nights' :maximum_nights,\
